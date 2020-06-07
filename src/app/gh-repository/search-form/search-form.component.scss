@@ -1,0 +1,18 @@
+.search-form {
+    max-width: 250px;
+    margin: 0 auto;
+
+    &__field {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    &__buttons-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__button {
+        margin: 0 10px;
+    }
+}

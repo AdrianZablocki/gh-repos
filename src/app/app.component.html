@@ -1,25 +1,2 @@
-<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
-<mat-form-field class="example-form-field">
-    <mat-label>Clearable input</mat-label>
-    <input matInput type="text" [(ngModel)]="value">
-    <!-- <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-    </button> -->
-</mat-form-field>
-
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-            placeholder="Ex. pat@example.com">
-        <button mat-button *ngIf="emailFormControl.value" matSuffix mat-icon-button aria-label="Clear"
-            (click)="emailFormControl.setValue('')">
-            <mat-icon>close</mat-icon>
-        </button>
-        <mat-hint>Errors appear instantly!</mat-hint>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-            Email is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-    <button type="submit" [disabled]="!emailFormControl.valid" (click)="test(emailFormControl.value)">Submit</button>
-</form>
+<app-search-form (submitName)="getRepositories($event)"></app-search-form>
+<app-repository-list [repositories]="repositories$"></app-repository-list>

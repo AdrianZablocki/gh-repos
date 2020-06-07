@@ -1,0 +1,23 @@
+<form class="search-form">
+    <mat-form-field class="search-form__field">
+        <mat-label>GitHub User Name</mat-label>
+        <input matInput [formControl]="searchFormControl" placeholder="Type github user name">
+        <mat-error *ngIf="searchFormControl.hasError('required')">
+            Name is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="searchFormControl.hasError('minlength')">
+            Name should have at least <strong>2 characters</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <div class="search-form__buttons-wrapper">
+        <button mat-raised-button color="primary" class="search-form__button" [disabled]="!searchFormControl.valid"
+            (click)="onSubmit(searchFormControl.value)">
+            Submit
+        </button>
+        <button mat-raised-button class="search-form__button" [disabled]="!searchFormControl.value"
+            (click)="searchFormControl.setValue('')">
+            Clear
+        </button>
+    </div>
+</form>

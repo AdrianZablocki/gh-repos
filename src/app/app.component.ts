@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-        const isSubmitted = form && form.submitted;
-        return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-    }
-}
+import { GhService } from './gh-repository/gh.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -15,17 +8,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'find-repos';
-    value = 'Clear me';
+    public repositories$: Observable<any>;
 
-    emailFormControl = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1),
-    ]);
+    constructor(private ghService: GhService) { }
 
-    matcher = new MyErrorStateMatcher();
-
-    test(value: string): void {
-        console.log(value);
+    public getRepositories(userName: string): void {
+        this.repositories$ = this.ghService.getRepositories(userName);
     }
 }
