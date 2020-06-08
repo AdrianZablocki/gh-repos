@@ -22,7 +22,7 @@ interface RepositoryInfo {
 @Injectable()
 export class GhService {
     private baseApiUrl: string = 'https://api.github.com';
-    private token: string = '67428e29823d03033718418af8e65912f7f69b05';
+    private token: string = 'a21cd6d779b9b55097d9569a3cef232ce7d311cc';
     private headers = new HttpHeaders().set('authorization', `token ${this.token}`);
 
     private isLoadingSubject = new BehaviorSubject<boolean>(false);
