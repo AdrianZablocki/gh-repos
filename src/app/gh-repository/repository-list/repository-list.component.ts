@@ -1,6 +1,8 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { Repository } from '../gh.service';
+
 @Component({
     selector: 'app-repository-list',
     templateUrl: './repository-list.component.html',
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RepositoryListComponent {
-    @Input() public repositories: Observable<any>;
+    @Input() public repositories: Observable<Repository[]>;
 
     constructor() { }
 }

@@ -1,2 +1,5 @@
-<app-search-form (submitName)="getRepositories($event)"></app-search-form>
-<app-repository-list [repositories]="repositories$"></app-repository-list>
+<div class="container">
+    <app-search-form (submitName)="getRepositories($event)"></app-search-form>
+    <app-repository-list [repositories]="repositories$"></app-repository-list>
+    <div *ngIf="isLoading$ | async">loading...</div>
+</div>

@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, concatMap, map, toArray, tap } from 'rxjs/operators';
 
-interface Repository {
+export interface Repository {
     name: string;
     login: string;
     branches: Branch[];
 }
 
-interface Branch {
+export interface Branch {
     name: string;
     sha: string;
 }
@@ -22,13 +22,16 @@ interface RepositoryInfo {
 @Injectable()
 export class GhService {
     private baseApiUrl: string = 'https://api.github.com';
-    private token: string = 'b69726b8d48cc752341102c6b290c467b5d4095c';
+    private token: string = '67428e29823d03033718418af8e65912f7f69b05';
     private headers = new HttpHeaders().set('authorization', `token ${this.token}`);
+
+    private isLoadingSubject = new BehaviorSubject<boolean>(false);
+    public isLoadingAction$ = this.isLoadingSubject.asObservable();
 
     constructor(private http: HttpClient) { }
 
     public getRepositories(userName: string): Observable<Repository[]> {
-        console.log('request', userName);
+        this.isLoadingSubject.next(true);
         return this.http.get(`${this.baseApiUrl}/users/${userName}/repos`, {
             headers: this.headers
         }).pipe(
@@ -42,11 +45,13 @@ export class GhService {
                 )
             }),
             toArray(),
+            tap(() => this.isLoadingSubject.next(false)),
             catchError(this.handleError)
         );
     }
 
     private getRepositoryBranches(repoName: string, userName: string): Observable<Branch[]> {
+        this.isLoadingSubject.next(true);
         return this.http.get(`${this.baseApiUrl}/repos/${userName}/${repoName}/branches`, {
             headers: this.headers
         }).pipe(
@@ -54,6 +59,7 @@ export class GhService {
                 name: item.name,
                 sha: item.commit.sha
             }))),
+            tap(() => this.isLoadingSubject.next(false)),
             catchError(this.handleError)
         )
     }

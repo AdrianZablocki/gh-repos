@@ -6,17 +6,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 import { SearchFormComponent } from './search-form/search-form.component';
 import { RepositoryListComponent } from './repository-list/repository-list.component';
 import { GhService } from './gh.service';
+import { RepositoryItemComponent } from './repository-item/repository-item.component';
 
 
 @NgModule({
     declarations: [
         SearchFormComponent,
-        RepositoryListComponent
+        RepositoryListComponent,
+        RepositoryItemComponent
     ],
     imports: [
         CommonModule,
@@ -27,7 +29,7 @@ import { GhService } from './gh.service';
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        MatIconModule
+        MatCardModule
     ],
     exports: [
         SearchFormComponent,

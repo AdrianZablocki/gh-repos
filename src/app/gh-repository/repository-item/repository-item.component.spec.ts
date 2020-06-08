@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchFormComponent } from './search-form.component';
+import { RepositoryItemComponent } from './repository-item.component';
 
-describe('SearchFormComponent', () => {
-    let component: SearchFormComponent;
-    let fixture: ComponentFixture<SearchFormComponent>;
+describe('RepositoryItemComponent', () => {
+    let component: RepositoryItemComponent;
+    let fixture: ComponentFixture<RepositoryItemComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SearchFormComponent]
+            declarations: [RepositoryItemComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SearchFormComponent);
+        fixture = TestBed.createComponent(RepositoryItemComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

@@ -1,6 +1,5 @@
-<div *ngIf="repositories | async as repos; else loading">
+<div *ngIf="repositories | async as repos" class="repo-list">
     <div *ngFor="let repo of repos">
-        <div>{{ repository.name }}</div>
+        <app-repository-item [repository]="repo" [branches]="repo.branches"></app-repository-item>
     </div>
 </div>
-<ng-template #loading>loading...</ng-template>

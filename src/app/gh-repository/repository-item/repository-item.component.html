@@ -1,0 +1,7 @@
+<mat-card class="repo">
+    <mat-card-title>{{ repository.name}}</mat-card-title>
+    <mat-card-subtitle>{{ repository.login }}</mat-card-subtitle>
+    <mat-card-content *ngFor="let branch of branches">
+        <span>Branch {{ branch.name }}: {{ branch.sha }}</span>
+    </mat-card-content>
+</mat-card>

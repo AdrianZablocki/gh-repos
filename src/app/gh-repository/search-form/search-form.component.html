@@ -1,6 +1,6 @@
 <form class="search-form">
     <mat-form-field class="search-form__field">
-        <mat-label>GitHub User Name</mat-label>
+        <mat-label>GitHub User Nick</mat-label>
         <input matInput [formControl]="searchFormControl" placeholder="Type github user name">
         <mat-error *ngIf="searchFormControl.hasError('required')">
             Name is <strong>required</strong>
